@@ -29,12 +29,12 @@ Here we define the baisc types of a sphinx-needs metamodel.
 
    todo:
    {
-        "name": "efforts",
-        "description": "Efforts in days",
-        "schema": {
-            "type": "integer",
-            "mininum": 0,
-        },
+    "name": "efforts",
+    "description": "Efforts in days",
+    "schema": {
+    "type": "integer",
+    "mininum": 0,
+    },
     }
 
 
