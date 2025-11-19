@@ -62,3 +62,21 @@ needs_id_required = True
 needs_id_length = 3
 needs_id_regex = "^[A-Za-z0-9_]{5,}"
 needs_build_json = True
+needs_extra_options = [
+    {
+        "name": "attributes",
+        "description": "Attributes",
+        "schema": {
+            "type": "array",
+            "items": {"type": "string"},
+        },
+    },
+    {
+        "name": "links",
+        "description": "Links",
+        "schema": {
+            "type": "array",
+            "items": {"type": "string"},
+        },
+    }
+]
