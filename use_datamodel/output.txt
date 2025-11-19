@@ -20,7 +20,6 @@ needs_extra_options = [
     {"name": "title",},
     {"name": "prefix",},
     {"name": "color",},
-    {"name": "style",},
 ]
 
 needs_extra_options = [

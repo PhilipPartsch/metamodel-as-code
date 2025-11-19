@@ -49,8 +49,10 @@ def attributes2python(attributes: List[str]) -> str:
     Convert a list of attributes to a Python-compatible string representation.
     """
     dicts_data = []
-    for a in attributes:
+
+    for a in list(dict.fromkeys(attributes)):
         a_str = '    {"name": "' + str(a) + '",},\n'
+        #a_str = f'    "{a}",\n'
         dicts_data.append(a_str)
 
     needs_extra_options = [
@@ -67,7 +69,7 @@ def links2python(links: List[str]) -> str:
     Convert a list of links to a Python-compatible string representation.
     """
     dicts_data = []
-    for l in links:
+    for l in list(dict.fromkeys(links)):
         l_str = f'    dict(option = "{l}", incoming = "{l}_back", outgoing ="{l}",),\n'
         dicts_data.append(l_str)
 
@@ -75,7 +77,7 @@ def links2python(links: List[str]) -> str:
         dict(option = "checks", incoming = "is checked by", outgoing ="checks",),
     ]
 
-    return_string =  "needs_extra_options = [\n"
+    return_string =  "needs_extra_links = [\n"
     return_string += "".join(dicts_data)
     return_string += "]\n"
 

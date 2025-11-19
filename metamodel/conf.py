@@ -42,7 +42,7 @@ exclude_patterns = ['_tools/*',]
 
 # -- Options for HTML output
 
-html_theme = 'sphinx_rtd_theme'
+#html_theme = 'sphinx_rtd_theme'
 #html_theme = 'alabaster'
 #html_theme = 'sphinx_immaterial'
 
@@ -77,22 +77,20 @@ needs_extra_options = [
     {"name": "outgoing",},
     {"name": "copy",},
     {"name": "allow_dead_links",},
-    {"name": "style",},
+    #{"name": "style",},
     {"name": "style_part",},
     {"name": "style_start",},
     {"name": "style_end",},
     {"name": "name",},
     {"name": "description",},
     {"name": "directive",},
-    {"name": "title",},
+    #{"name": "title",},
     {"name": "prefix",},
     {"name": "color",},
-    {"name": "style",},
 ]
 
-needs_extra_options = [
+needs_extra_links = [
     dict(option = "optinal", incoming = "optinal_back", outgoing ="optinal",),
     dict(option = "mandatory", incoming = "mandatory_back", outgoing ="mandatory",),
 ]
-
 
