@@ -58,7 +58,7 @@ html_static_path = ['_static']
 
 # --  sphinx-needs configuration
 
-needs_id_required = true
+needs_id_required = True
 needs_id_length = 3
 needs_id_regex = "^[A-Za-z0-9_]{5,}"
-needs_build_json = true
+needs_build_json = True
