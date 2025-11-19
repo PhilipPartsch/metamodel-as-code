@@ -72,26 +72,27 @@ needs_types = [
 ]
 
 needs_extra_options = [
-    "option",
-    "incoming",
-    "outgoing",
-    "copy",
-    "allow_dead_links",
-    "style",
-    "style_part",
-    "style_start",
-    "style_end",
-    "name",
-    "description",
-    "directive",
-    "title",
-    "prefix",
-    "color",
-    "style",
+    {"name": "option",},
+    {"name": "incoming",},
+    {"name": "outgoing",},
+    {"name": "copy",},
+    {"name": "allow_dead_links",},
+    {"name": "style",},
+    {"name": "style_part",},
+    {"name": "style_start",},
+    {"name": "style_end",},
+    {"name": "name",},
+    {"name": "description",},
+    {"name": "directive",},
+    {"name": "title",},
+    {"name": "prefix",},
+    {"name": "color",},
+    {"name": "style",},
 ]
 
 needs_extra_options = [
     dict(option = "optinal", incoming = "optinal_back", outgoing ="optinal",),
     dict(option = "mandatory", incoming = "mandatory_back", outgoing ="mandatory",),
 ]
+
 

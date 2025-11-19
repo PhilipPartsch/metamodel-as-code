@@ -50,7 +50,7 @@ def attributes2python(attributes: List[str]) -> str:
     """
     dicts_data = []
     for a in attributes:
-        a_str = f'    \{"name": "{a}",\},\n'
+        a_str = '    {"name": "' + str(a) + '",},\n'
         dicts_data.append(a_str)
 
     needs_extra_options = [
