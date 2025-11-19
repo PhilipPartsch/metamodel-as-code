@@ -20,6 +20,7 @@ def extract_needs_from_json(data: Dict[str, Any]) -> Dict[str, Any]:
     needs = current_version_data.get("needs", {})
     return needs
 
+
 def types2python(types: List[Any]) -> List[str]:
     """
     Convert a list of types to a Python-compatible string representation.
@@ -42,15 +43,15 @@ def types2python(types: List[Any]) -> List[str]:
 
     return return_string
 
+
 def attributes2python(attributes: List[str]) -> str:
     """
     Convert a list of attributes to a Python-compatible string representation.
     """
     dicts_data = []
     for a in attributes:
-        a_str = f'    "{a}",\n'
+        a_str = f'    \{"name": "{a}",\},\n'
         dicts_data.append(a_str)
-
 
     needs_extra_options = [
         "my_extra_option",
@@ -59,6 +60,7 @@ def attributes2python(attributes: List[str]) -> str:
     return_string = "needs_extra_options = [\n" + "".join(dicts_data) + "]\n"
 
     return return_string
+
 
 def links2python(links: List[str]) -> str:
     """
