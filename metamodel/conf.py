@@ -63,6 +63,8 @@ needs_id_length = 3
 needs_id_regex = "^[A-Za-z0-9_]{5,}"
 needs_build_json = True
 
+
+# added by scripts: json2conf.py
 needs_types = [
     dict(directive="SN_LINK", title="SN_LINK", prefix="SN_LINK_", color="#BFD8D2", style="node"),
     dict(directive="SN_OPTION", title="SN_OPTION", prefix="SN_OPTION_", color="#BFD8D2", style="node"),
