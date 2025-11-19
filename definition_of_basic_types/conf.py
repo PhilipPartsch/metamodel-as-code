@@ -35,7 +35,7 @@ on_rtd = os.environ.get("READTHEDOCS") == "True"
 
 extensions = [
     'sphinx_needs',
-    'sphinxcontrib.plantuml',
+    #'sphinxcontrib.plantuml',
 ]
 
 exclude_patterns = ['_tools/*',]
