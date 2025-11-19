@@ -63,3 +63,33 @@ needs_id_length = 3
 needs_id_regex = "^[A-Za-z0-9_]{5,}"
 needs_build_json = True
 
+needs_types = [
+    dict(directive="SN_LINK", title="SN_LINK", prefix="SN_LINK_", color="#BFD8D2", style="node"),
+    dict(directive="SN_OPTION", title="SN_OPTION", prefix="SN_OPTION_", color="#BFD8D2", style="node"),
+    dict(directive="SN_TYPE", title="SN_TYPE", prefix="SN_TYPE_", color="#BFD8D2", style="node"),
+]
+
+needs_extra_options = [
+    "option",
+    "incoming",
+    "outgoing",
+    "copy",
+    "allow_dead_links",
+    "style",
+    "style_part",
+    "style_start",
+    "style_end",
+    "name",
+    "description",
+    "directive",
+    "title",
+    "prefix",
+    "color",
+    "style",
+]
+
+needs_extra_options = [
+    dict(option = "optinal", incoming = "optinal_back", outgoing ="optinal",),
+    dict(option = "mandatory", incoming = "mandatory_back", outgoing ="mandatory",),
+]
+
