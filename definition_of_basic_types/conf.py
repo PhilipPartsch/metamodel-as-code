@@ -64,7 +64,7 @@ needs_id_regex = "^[A-Za-z0-9_]{5,}"
 needs_build_json = True
 needs_extra_options = [
     {
-        "name": "attributes",
+        "name": "sn_attributes",
         "description": "Attributes",
         "schema": {
             "type": "array",
@@ -72,7 +72,7 @@ needs_extra_options = [
         },
     },
     {
-        "name": "links",
+        "name": "sn_links",
         "description": "Links",
         "schema": {
             "type": "array",
