@@ -50,10 +50,18 @@ jobs:
     - name: Lint the project with sphinx-lint
       run: |
         sphinx-lint
-    - name: Render the documentation
+    - name: Render Basic Types
       run: >
         sphinx-build
-        -b html ./definition_of_basic_types ./public
+        -b html ./definition_of_basic_types ./public/definition_of_basic_types
+        --jobs=auto
+        --show-traceback
+        --keep-going
+        --fail-on-warning
+    - name: Render Metamodel
+      run: >
+        sphinx-build
+        -b html ./metamodel ./public/metamodel
         --jobs=auto
         --show-traceback
         --keep-going
