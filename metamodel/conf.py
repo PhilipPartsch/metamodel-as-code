@@ -66,7 +66,6 @@ needs_build_json = True
 
 # added by scripts: json2conf.py
 needs_types = [
-    dict(directive="req2", title="Requirement", prefix="R_", color="#BFD8D2", style="node"),
     dict(directive="sn_link", title="SN_LINK", prefix="SN_LINK__", color="#BFD8D2", style="node"),
     dict(directive="sn_option", title="SN_OPTION", prefix="SN_OPTION__", color="#BFD8D2", style="node"),
     dict(directive="sn_type", title="SN_TYPE", prefix="SN_TYPE__", color="#BFD8D2", style="node"),

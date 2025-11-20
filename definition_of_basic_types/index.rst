@@ -4,10 +4,13 @@ Definition of Basic Types
 
 Here we define the baisc types of a sphinx-needs metamodel.
 
+.. need:: type group
+   :id: SN_TYPEGROUP
+
 
 .. need:: Type
    :id: SN_TYPE
-   :sn_links: optinal, mandatory
+   :sn_links: optinal, mandatory, groups
    :sn_attributes: directive,
                 title,
                 prefix,
@@ -52,6 +55,10 @@ Here we define the baisc types of a sphinx-needs metamodel.
 
    https://sphinx-needs.readthedocs.io/en/latest/configuration.html#needs-extra-links
 
+
+.. need:: sn_association
+   :id: SN_ASSOCIATION
+   :sn_links: targets, link
 
 
 

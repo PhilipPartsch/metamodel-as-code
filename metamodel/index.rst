@@ -7,16 +7,22 @@ Here we define a sphinx-needs metamodel.
 Types
 *****
 
-.. sn_type:: requirement
-   :id: SN_TYPE__requirement
+.. sn_typegroup:: requirements
+   :id: SN_TYPE__requirements
+
+
+.. sn_type:: sw requirement
+   :id: SN_TYPE__sw_requirement
    :directive: requirement
    :prefix: REQ__
    :color: #FFA500
    :style: node
    :mandatory: SN_OPTION__safety
    :optinal: SN_OPTION__priority
+   :groups: SN_TYPE__requirements
 
    A requirement describes a need that has to be fulfilled.
+
 
 .. sn_type:: test_specification
    :id: SN_TYPE__test_specification
@@ -28,6 +34,18 @@ Types
    :optinal: SN_OPTION__priority
 
    A test specification describes a need that defines tests for requirements.
+
+   .. list2need::
+      :types: sn_association
+
+      * (SN_TYPE__test_specification__verifies) verifies link.
+        The test_specification verifies requirements.
+        ((targets="SN_TYPE__requirements", link="SN_LINK__verifies"))
+
+   .. sn_association:: verifies2
+      :id: SN_TYPE__test_specification__verifies2
+      :targets: SN_TYPE__requirements
+      :link: SN_LINK__verifies
 
 
 Options
