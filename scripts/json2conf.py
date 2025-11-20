@@ -28,7 +28,7 @@ def types2python(types: List[Any]) -> List[str]:
 
     dicts_data = []
     for t in types:
-        t_str = f'    dict(directive="{t}", title="{t}", prefix="{t}_", color="#BFD8D2", style="node"),\n'
+        t_str = f'    dict(directive="{t.lower()}", title="{t}", prefix="{t}__", color="#BFD8D2", style="node"),\n'
         dicts_data.append(t_str)
 
     return_string = "needs_types = [\n" + "".join(dicts_data) + "]\n"
