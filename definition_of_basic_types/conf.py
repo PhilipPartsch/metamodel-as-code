@@ -42,7 +42,7 @@ exclude_patterns = ['_tools/*',]
 
 # -- Options for HTML output
 
-html_theme = 'sphinx_rtd_theme'
+#html_theme = 'sphinx_rtd_theme'
 #html_theme = 'alabaster'
 #html_theme = 'sphinx_immaterial'
 

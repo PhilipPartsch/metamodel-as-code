@@ -66,9 +66,11 @@ needs_build_json = True
 
 # added by scripts: json2conf.py
 needs_types = [
+    dict(directive="sn_association", title="SN_ASSOCIATION", prefix="SN_ASSOCIATION__", color="#BFD8D2", style="node"),
     dict(directive="sn_link", title="SN_LINK", prefix="SN_LINK__", color="#BFD8D2", style="node"),
     dict(directive="sn_option", title="SN_OPTION", prefix="SN_OPTION__", color="#BFD8D2", style="node"),
     dict(directive="sn_type", title="SN_TYPE", prefix="SN_TYPE__", color="#BFD8D2", style="node"),
+    dict(directive="sn_typegroup", title="SN_TYPEGROUP", prefix="SN_TYPEGROUP__", color="#BFD8D2", style="node"),
 ]
 
 needs_extra_options = [
@@ -90,7 +92,10 @@ needs_extra_options = [
 ]
 
 needs_extra_links = [
+    dict(option = "targets", incoming = "targets_back", outgoing ="targets",),
+    dict(option = "link", incoming = "link_back", outgoing ="link",),
     dict(option = "optinal", incoming = "optinal_back", outgoing ="optinal",),
     dict(option = "mandatory", incoming = "mandatory_back", outgoing ="mandatory",),
+    dict(option = "groups", incoming = "groups_back", outgoing ="groups",),
 ]
 
