@@ -1,9 +1,9 @@
 # usage:
-# python ./scripts/json2conf.py -i ./use_datamodel/input.json -o ./use_datamodel/output.txt
+# python ./scripts/basic_json2conf.py -i ./use_datamodel/basic_needs.json -o ./use_datamodel/output.txt
 
 """
-We read a JSON file containing configuration data following the in basic defined
-metamodel and convert it into a sphinx-needs configuration format.
+We read a JSON file containing configuration data only using 'need' types and
+convert it into a sphinx-needs configuration format.
 """
 
 import json
@@ -29,18 +29,17 @@ def types2python(types: List[Any]) -> List[str]:
 
     dicts_data = []
     for t in types:
-        t_str = f'    dict(directive="{t.lower()}", title="{t}", prefix="{t}__", color="#BFD8D2", style="node"),\n'
+        t_str = f'    '
+        if len(t) >= 1 and t[0] == '#':
+            t_str += f'# '
+        t_str += f'dict(directive="{t.lower()}", title="{t}", prefix="{t}__", color="#BFD8D2", style="node"),\n'
         dicts_data.append(t_str)
 
     return_string = "needs_types = [\n" + "".join(dicts_data) + "]\n"
 
-    needs_types = [dict(directive="req", title="Requirement", prefix="R_", color="#BFD8D2", style="node"),
-               dict(directive="spec", title="Specification", prefix="S_", color="#FEDCD2", style="node"),
-               dict(directive="impl", title="Implementation", prefix="I_", color="#DF744A", style="node"),
-               dict(directive="test", title="Test Case", prefix="T_", color="#DCB239", style="node"),
-               # Kept for backwards compatibility
-               dict(directive="need", title="Need", prefix="N_", color="#9856a5", style="node")
-           ]
+    #needs_types = [
+    #    dict(directive="req", title="Requirement", prefix="R_", color="#BFD8D2", style="node"),
+    #]
 
     return return_string
 
@@ -52,13 +51,16 @@ def attributes2python(attributes: List[str]) -> str:
     dicts_data = []
 
     for a in list(dict.fromkeys(attributes)):
-        a_str = '    {"name": "' + str(a) + '",},\n'
-        #a_str = f'    "{a}",\n'
+        a_str = f'    '
+        if len(a) >= 1 and a[0] == '#':
+            a_str += f'# '
+        a_str += '{"name": "' + str(a) + '",},\n'
+        #a_str += f'"{a}",\n'
         dicts_data.append(a_str)
 
-    needs_extra_options = [
-        "my_extra_option",
-    ]
+    #needs_extra_options = [
+    #    "my_extra_option",
+    #]
 
     return_string = "needs_extra_options = [\n" + "".join(dicts_data) + "]\n"
 
@@ -71,12 +73,15 @@ def links2python(links: List[str]) -> str:
     """
     dicts_data = []
     for l in list(dict.fromkeys(links)):
-        l_str = f'    dict(option = "{l}", incoming = "{l}_back", outgoing ="{l}",),\n'
+        l_str = f'    '
+        if len(l) >= 1 and l[0] == '#':
+            l_str += f'# '
+        l_str += f'dict(option = "{l}", incoming = "{l}_back", outgoing ="{l}",),\n'
         dicts_data.append(l_str)
 
-    needs_extra_links = [
-        dict(option = "checks", incoming = "is checked by", outgoing ="checks",),
-    ]
+    #needs_extra_links = [
+    #    dict(option = "checks", incoming = "is checked by", outgoing ="checks",),
+    #]
 
     return_string =  "needs_extra_links = [\n"
     return_string += "".join(dicts_data)
@@ -121,9 +126,6 @@ def json_to_conf(data: Dict[str, Any]) -> str:
     conf_lines += links2python(sn_links)
     conf_lines += "\n"
 
-    #conf_lines.append(sn_attributes)
-    #conf_lines.append(sn_links)
-
     return conf_lines
 
 def main(input_path: Path, output_path: Path) -> None:
@@ -145,8 +147,6 @@ if __name__ == "__main__":
       parser = argparse.ArgumentParser(description="Convert JSON to custom configuration format.")
       parser.add_argument("-i", "--input", help="Path to the input json file.", required=True, type=Path)
       parser.add_argument("-o", "--output", help="Path to the output json file.", required=True, type=Path)
-      #parser.add_argument("input", help="Path to the input JSON file.")
-      #parser.add_argument("output", help="Path to the output configuration file.")
       args = parser.parse_args()
 
       main(args.input, args.output)

@@ -65,6 +65,7 @@ needs_build_json = True
 
 
 # added by scripts: json2conf.py
+
 needs_types = [
     dict(directive="sn_association", title="SN_ASSOCIATION", prefix="SN_ASSOCIATION__", color="#BFD8D2", style="node"),
     dict(directive="sn_link", title="SN_LINK", prefix="SN_LINK__", color="#BFD8D2", style="node"),
@@ -79,14 +80,15 @@ needs_extra_options = [
     {"name": "outgoing",},
     {"name": "copy",},
     {"name": "allow_dead_links",},
-    #{"name": "style",},
+    # {"name": "#style",},
     {"name": "style_part",},
     {"name": "style_start",},
     {"name": "style_end",},
     {"name": "name",},
     {"name": "description",},
+    {"name": "schema",},
     {"name": "directive",},
-    #{"name": "title",},
+    # {"name": "#title",},
     {"name": "prefix",},
     {"name": "color",},
 ]
@@ -98,4 +100,5 @@ needs_extra_links = [
     dict(option = "mandatory", incoming = "mandatory_back", outgoing ="mandatory",),
     dict(option = "groups", incoming = "groups_back", outgoing ="groups",),
 ]
+
 

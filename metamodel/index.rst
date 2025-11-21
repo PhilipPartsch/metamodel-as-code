@@ -54,8 +54,7 @@ Options
 .. sn_option:: priority
    :id: SN_OPTION__priority
    :name: priority
-
-   : description : Priority of the need
+   :description: Priority of the need
 
    The priority option indicates the importance of a need.
 
@@ -63,8 +62,7 @@ Options
 .. sn_option:: safety
    :id: SN_OPTION__safety
    :name: safety
-
-   : description : safety level
+   :description: safety level
 
    The safety option indicates the safety level of a need.
 

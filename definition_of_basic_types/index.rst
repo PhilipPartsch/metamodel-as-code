@@ -12,10 +12,10 @@ Here we define the baisc types of a sphinx-needs metamodel.
    :id: SN_TYPE
    :sn_links: optinal, mandatory, groups
    :sn_attributes: directive,
-                title,
+                #title,
                 prefix,
                 color,
-                style
+                #style
 
    A Sphinx-Needs metamodel has to define the types it wants to be used.
 
@@ -26,7 +26,8 @@ Here we define the baisc types of a sphinx-needs metamodel.
 .. need:: Extra Option
    :id: SN_OPTION
    :sn_attributes: name,
-                description
+                description,
+                schema
 
    https://sphinx-needs.readthedocs.io/en/latest/configuration.html#needs-extra-options
 
@@ -48,7 +49,7 @@ Here we define the baisc types of a sphinx-needs metamodel.
                 outgoing,
                 copy,
                 allow_dead_links,
-                style,
+                #style,
                 style_part,
                 style_start,
                 style_end
