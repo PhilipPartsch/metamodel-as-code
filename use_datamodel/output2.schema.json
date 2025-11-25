@@ -1,0 +1,206 @@
+{
+    "$defs": {
+        "OPTION__safety": {
+            "properties": {
+                "safety": {
+                    "type": "string",
+                    "enum": [
+                        "QM",
+                        "ASIL-A",
+                        "ASIL-B",
+                        "ASIL-C",
+                        "ASIL-D"
+                    ]
+                }
+            }
+        },
+        "TYPE__aou": {
+            "properties": {
+                "type": {
+                    "const": "aou"
+                },
+                "safety": {
+                    "$ref": "#/$defs/OPTION__safety"
+                }
+            },
+            "required": [
+                "type",
+                "safety"
+            ],
+            "unevaluatedProperties": false
+        },
+        "TYPE__assumed_req": {
+            "properties": {
+                "type": {
+                    "const": "asreq"
+                },
+                "safety": {
+                    "$ref": "#/$defs/OPTION__safety"
+                }
+            },
+            "required": [
+                "type",
+                "safety"
+            ],
+            "unevaluatedProperties": false
+        },
+        "TYPE__datatype": {
+            "properties": {
+                "type": {
+                    "const": "datatype"
+                },
+                "safety": {
+                    "$ref": "#/$defs/OPTION__safety"
+                }
+            },
+            "required": [
+                "type",
+                "safety"
+            ],
+            "unevaluatedProperties": false
+        },
+        "TYPE__port": {
+            "properties": {
+                "type": {
+                    "const": "unit"
+                },
+                "safety": {
+                    "$ref": "#/$defs/OPTION__safety"
+                }
+            },
+            "required": [
+                "type",
+                "safety"
+            ],
+            "unevaluatedProperties": false
+        },
+        "TYPE__sw_arch_decision": {
+            "properties": {
+                "type": {
+                    "const": "sw_arch_dec"
+                },
+                "safety": {
+                    "$ref": "#/$defs/OPTION__safety"
+                }
+            },
+            "required": [
+                "type",
+                "safety"
+            ],
+            "unevaluatedProperties": false
+        },
+        "TYPE__sw_arch_diagram": {
+            "properties": {
+                "type": {
+                    "const": "sw_arch_dia"
+                },
+                "safety": {
+                    "$ref": "#/$defs/OPTION__safety"
+                }
+            },
+            "required": [
+                "type",
+                "safety"
+            ],
+            "unevaluatedProperties": false
+        },
+        "TYPE__sw_requirement": {
+            "properties": {
+                "type": {
+                    "const": "swreq"
+                },
+                "safety": {
+                    "$ref": "#/$defs/OPTION__safety"
+                }
+            },
+            "required": [
+                "type",
+                "safety"
+            ],
+            "unevaluatedProperties": false
+        },
+        "TYPE__sys_requirement": {
+            "properties": {
+                "type": {
+                    "const": "sysreq"
+                },
+                "safety": {
+                    "$ref": "#/$defs/OPTION__safety"
+                }
+            },
+            "required": [
+                "type",
+                "safety"
+            ],
+            "unevaluatedProperties": false
+        },
+        "TYPE__test_specification": {
+            "properties": {
+                "type": {
+                    "const": "test_specification"
+                },
+                "safety": {
+                    "$ref": "#/$defs/OPTION__safety"
+                }
+            },
+            "required": [
+                "type",
+                "safety",
+                ""
+            ],
+            "unevaluatedProperties": false
+        },
+        "TYPE__unit": {
+            "properties": {
+                "type": {
+                    "const": "unit"
+                },
+                "safety": {
+                    "$ref": "#/$defs/OPTION__safety"
+                }
+            },
+            "required": [
+                "type",
+                "safety"
+            ],
+            "unevaluatedProperties": false
+        },
+        "GROUP__requirements": {
+            "oneOf": [
+                {
+                    "$ref": "#/$defs/TYPE__sys_requirement"
+                },
+                {
+                    "$ref": "#/$defs/TYPE__sw_requirement"
+                },
+                {
+                    "$ref": "#/$defs/TYPE__assumed_req"
+                }
+            ]
+        },
+        "GROUP__sw_arch": {
+            "oneOf": [
+                {
+                    "$ref": "#/$defs/TYPE__sw_arch_diagram"
+                },
+                {
+                    "$ref": "#/$defs/TYPE__sw_arch_decision"
+                }
+            ]
+        },
+        "GROUP__sw_arch2": {
+            "oneOf": [
+                {
+                    "$ref": "#/$defs/TYPE__unit"
+                },
+                {
+                    "$ref": "#/$defs/TYPE__port"
+                },
+                {
+                    "$ref": "#/$defs/TYPE__datatype"
+                }
+            ]
+        }
+    },
+    "schemas": []
+}

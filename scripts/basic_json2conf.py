@@ -104,13 +104,13 @@ def json_to_conf(data: Dict[str, Any]) -> str:
 
     for key, value in needs.items():
         if isinstance(value, dict):
-            if value["sn_attributes"]:
+            if "sn_attributes" in value and value["sn_attributes"]:
                 if isinstance(value["sn_attributes"], list):
                     for l in value["sn_attributes"]:
                         sn_attributes.append(l)
                 else:
                     sn_attributes.append(value["sn_attributes"])
-            if value["sn_links"]:
+            if "sn_links" in value and value["sn_links"]:
                 if isinstance(value["sn_links"], list):
                     for l in value["sn_links"]:
                         sn_links.append(l)

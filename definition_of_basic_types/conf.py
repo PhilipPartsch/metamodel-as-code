@@ -78,5 +78,5 @@ needs_extra_options = [
             "type": "array",
             "items": {"type": "string"},
         },
-    }
+    },
 ]

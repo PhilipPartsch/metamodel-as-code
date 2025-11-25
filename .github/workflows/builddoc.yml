@@ -66,6 +66,14 @@ jobs:
         --show-traceback
         --keep-going
         --fail-on-warning
+    - name: Render Test Project
+      run: >
+        sphinx-build
+        -b html ./test-project ./public/test-project
+        --jobs=auto
+        --show-traceback
+        --keep-going
+        --fail-on-warning
     - name: Archive sphinx public folder
       uses: actions/upload-artifact@v4
       with:

@@ -31,16 +31,6 @@ Here we define the baisc types of a sphinx-needs metamodel.
 
    https://sphinx-needs.readthedocs.io/en/latest/configuration.html#needs-extra-options
 
-   todo:
-   {
-   "name": "efforts",
-   "description": "Efforts in days",
-   "schema": {
-   "type": "integer",
-   "mininum": 0,
-   },
-   }
-
 
 .. need:: Extra Link
    :id: SN_LINK
@@ -52,7 +42,8 @@ Here we define the baisc types of a sphinx-needs metamodel.
                 #style,
                 style_part,
                 style_start,
-                style_end
+                style_end,
+                schema
 
    https://sphinx-needs.readthedocs.io/en/latest/configuration.html#needs-extra-links
 
@@ -60,6 +51,4 @@ Here we define the baisc types of a sphinx-needs metamodel.
 .. need:: sn_association
    :id: SN_ASSOCIATION
    :sn_links: targets, link
-
-
 

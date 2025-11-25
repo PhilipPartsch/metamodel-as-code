@@ -95,7 +95,7 @@ needs_extra_options = [
 
 needs_extra_links = [
     dict(option = "targets", incoming = "targets_back", outgoing ="targets",),
-    dict(option = "link", incoming = "link_back", outgoing ="link",),
+    dict(option = "link", incoming = "link_back", outgoing ="link", schema={"maxItems": 1,},),
     dict(option = "optinal", incoming = "optinal_back", outgoing ="optinal",),
     dict(option = "mandatory", incoming = "mandatory_back", outgoing ="mandatory",),
     dict(option = "groups", incoming = "groups_back", outgoing ="groups",),
