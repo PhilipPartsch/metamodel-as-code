@@ -80,14 +80,19 @@ needs_types = [
     dict(directive='arch_unit', title='Unit', prefix='UNIT__', color='#FFA500', style='node'),
 ]
 
-needs_extra_options = [
+needs_extra_options2 = [
     dict(name='safety', description='safety level', schema={"type": "string", "enum": ["QM", "ASIL-A", "ASIL-B", "ASIL-C", "ASIL-D"]}),
 ]
 
-needs_extra_links2 = [
-    dict(option='covered_by', incoming='covers', outgoing='covered by', copy=True, color='#000000', style='#000000', style_part='#000000', style_start='-', style_end='->', allow_dead_links=False, schema=''),
-    dict(option='covers', incoming='covered by', outgoing='covers', copy=True, color='#000000', style='#000000', style_part='#000000', style_start='-', style_end='->', allow_dead_links=False, schema=''),
-    dict(option='satisfies', incoming='satisfied by', outgoing='satisfies', copy=True, color='#000000', style='#000000', style_part='#000000', style_start='-', style_end='->', allow_dead_links=False, schema=''),
-    dict(option='verifies', incoming='verified by', outgoing='verifies', copy=True, color='#000000', style='#000000', style_part='#000000', style_start='-', style_end='->', allow_dead_links=False, schema=''),
+needs_extra_options = [
+    dict(name='safety', description='safety level', ),
+    dict(name='safety2', description='safety level', ),
+]
+
+needs_extra_links = [
+    dict(option='covered_by', incoming='covers', outgoing='covered by', copy=True, color='#000000', style='#000000', style_part='#000000', style_start='-', style_end='->', allow_dead_links=False),
+    dict(option='covers', incoming='covered by', outgoing='covers', copy=True, color='#000000', style='#000000', style_part='#000000', style_start='-', style_end='->', allow_dead_links=False),
+    dict(option='satisfies', incoming='satisfied by', outgoing='satisfies', copy=True, color='#000000', style='#000000', style_part='#000000', style_start='-', style_end='->', allow_dead_links=False),
+    dict(option='verifies', incoming='verified by', outgoing='verifies', copy=True, color='#000000', style='#000000', style_part='#000000', style_start='-', style_end='->', allow_dead_links=False),
 ]
 

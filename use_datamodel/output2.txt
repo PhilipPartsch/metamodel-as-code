@@ -2,7 +2,7 @@ needs_types = [
     dict(directive='aou', title='Assumption of Use', prefix='AOU__', color='#FF0000', style='node'),
     dict(directive='asreq', title='assumed requirement', prefix='ASREQ__', color='#FFA500', style='node'),
     dict(directive='datatype', title='Datatype', prefix='DATATYPE__', color='#FFA500', style='node'),
-    dict(directive='unit', title='Port', prefix='PORT__', color='#FFA500', style='node'),
+    dict(directive='port', title='Port', prefix='PORT__', color='#FFA500', style='node'),
     dict(directive='sw_arch_dec', title='Software Architecture Decision', prefix='ARCH_DEC__', color='#FFA500', style='node'),
     dict(directive='sw_arch_dia', title='Software Architecture Diagram', prefix='ARCH_DIA__', color='#FFA500', style='node'),
     dict(directive='swreq', title='sw requirement', prefix='SWREQ__', color='#FFA500', style='node'),

@@ -1,206 +1,485 @@
 {
     "$defs": {
         "OPTION__safety": {
+            "type": "string",
+            "enum": [
+                "QM",
+                "ASIL-A",
+                "ASIL-B",
+                "ASIL-C",
+                "ASIL-D"
+            ]
+        },
+        "select_aou": {
             "properties": {
-                "safety": {
-                    "type": "string",
-                    "enum": [
-                        "QM",
-                        "ASIL-A",
-                        "ASIL-B",
-                        "ASIL-C",
-                        "ASIL-D"
-                    ]
+                "type": {
+                    "const": "aou"
                 }
             }
         },
         "TYPE__aou": {
             "properties": {
-                "type": {
-                    "const": "aou"
-                },
                 "safety": {
                     "$ref": "#/$defs/OPTION__safety"
+                },
+                "satisfies": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "links": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
                 }
             },
             "required": [
-                "type",
                 "safety"
-            ],
-            "unevaluatedProperties": false
+            ]
         },
-        "TYPE__assumed_req": {
+        "select_asreq": {
             "properties": {
                 "type": {
                     "const": "asreq"
-                },
+                }
+            }
+        },
+        "TYPE__assumed_req": {
+            "properties": {
                 "safety": {
                     "$ref": "#/$defs/OPTION__safety"
                 }
             },
             "required": [
-                "type",
                 "safety"
-            ],
-            "unevaluatedProperties": false
+            ]
         },
-        "TYPE__datatype": {
+        "select_datatype": {
             "properties": {
                 "type": {
                     "const": "datatype"
-                },
+                }
+            }
+        },
+        "TYPE__datatype": {
+            "properties": {
                 "safety": {
                     "$ref": "#/$defs/OPTION__safety"
                 }
             },
             "required": [
-                "type",
                 "safety"
-            ],
-            "unevaluatedProperties": false
+            ]
+        },
+        "select_port": {
+            "properties": {
+                "type": {
+                    "const": "port"
+                }
+            }
         },
         "TYPE__port": {
             "properties": {
-                "type": {
-                    "const": "unit"
-                },
                 "safety": {
                     "$ref": "#/$defs/OPTION__safety"
                 }
             },
             "required": [
-                "type",
                 "safety"
-            ],
-            "unevaluatedProperties": false
+            ]
         },
-        "TYPE__sw_arch_decision": {
+        "select_sw_arch_dec": {
             "properties": {
                 "type": {
                     "const": "sw_arch_dec"
-                },
+                }
+            }
+        },
+        "TYPE__sw_arch_decision": {
+            "properties": {
                 "safety": {
                     "$ref": "#/$defs/OPTION__safety"
                 }
             },
             "required": [
-                "type",
                 "safety"
-            ],
-            "unevaluatedProperties": false
+            ]
         },
-        "TYPE__sw_arch_diagram": {
+        "select_sw_arch_dia": {
             "properties": {
                 "type": {
                     "const": "sw_arch_dia"
-                },
+                }
+            }
+        },
+        "TYPE__sw_arch_diagram": {
+            "properties": {
                 "safety": {
                     "$ref": "#/$defs/OPTION__safety"
                 }
             },
             "required": [
-                "type",
                 "safety"
-            ],
-            "unevaluatedProperties": false
+            ]
         },
-        "TYPE__sw_requirement": {
+        "select_swreq": {
             "properties": {
                 "type": {
                     "const": "swreq"
-                },
+                }
+            }
+        },
+        "TYPE__sw_requirement": {
+            "properties": {
                 "safety": {
                     "$ref": "#/$defs/OPTION__safety"
                 }
             },
             "required": [
-                "type",
                 "safety"
-            ],
-            "unevaluatedProperties": false
+            ]
         },
-        "TYPE__sys_requirement": {
+        "select_sysreq": {
             "properties": {
                 "type": {
                     "const": "sysreq"
-                },
+                }
+            }
+        },
+        "TYPE__sys_requirement": {
+            "properties": {
                 "safety": {
                     "$ref": "#/$defs/OPTION__safety"
                 }
             },
             "required": [
-                "type",
                 "safety"
-            ],
-            "unevaluatedProperties": false
+            ]
         },
-        "TYPE__test_specification": {
+        "select_test_specification": {
             "properties": {
                 "type": {
                     "const": "test_specification"
-                },
+                }
+            }
+        },
+        "TYPE__test_specification": {
+            "properties": {
                 "safety": {
                     "$ref": "#/$defs/OPTION__safety"
+                },
+                "verifies": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "links": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
                 }
             },
             "required": [
-                "type",
-                "safety",
-                ""
-            ],
-            "unevaluatedProperties": false
+                "safety"
+            ]
         },
-        "TYPE__unit": {
+        "select_unit": {
             "properties": {
                 "type": {
                     "const": "unit"
-                },
+                }
+            }
+        },
+        "TYPE__unit": {
+            "properties": {
                 "safety": {
                     "$ref": "#/$defs/OPTION__safety"
                 }
             },
             "required": [
-                "type",
                 "safety"
-            ],
-            "unevaluatedProperties": false
+            ]
+        },
+        "select_GROUP__requirements": {
+            "anyOf": [
+                {
+                    "$ref": "#/$defs/select_sysreq"
+                },
+                {
+                    "$ref": "#/$defs/select_swreq"
+                },
+                {
+                    "$ref": "#/$defs/select_asreq"
+                }
+            ]
         },
         "GROUP__requirements": {
-            "oneOf": [
+            "properties": {},
+            "required": []
+        },
+        "select_GROUP__sw_arch": {
+            "anyOf": [
                 {
-                    "$ref": "#/$defs/TYPE__sys_requirement"
+                    "$ref": "#/$defs/select_sw_arch_dia"
                 },
                 {
-                    "$ref": "#/$defs/TYPE__sw_requirement"
-                },
-                {
-                    "$ref": "#/$defs/TYPE__assumed_req"
+                    "$ref": "#/$defs/select_sw_arch_dec"
                 }
             ]
         },
         "GROUP__sw_arch": {
-            "oneOf": [
+            "properties": {
+                "satisfies": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "covered_by": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "links": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "required": [
+                "satisfies"
+            ]
+        },
+        "select_GROUP__sw_arch2": {
+            "anyOf": [
                 {
-                    "$ref": "#/$defs/TYPE__sw_arch_diagram"
+                    "$ref": "#/$defs/select_unit"
                 },
                 {
-                    "$ref": "#/$defs/TYPE__sw_arch_decision"
+                    "$ref": "#/$defs/select_port"
+                },
+                {
+                    "$ref": "#/$defs/select_datatype"
                 }
             ]
         },
         "GROUP__sw_arch2": {
-            "oneOf": [
-                {
-                    "$ref": "#/$defs/TYPE__unit"
-                },
-                {
-                    "$ref": "#/$defs/TYPE__port"
-                },
-                {
-                    "$ref": "#/$defs/TYPE__datatype"
-                }
-            ]
+            "properties": {},
+            "required": []
         }
     },
-    "schemas": []
+    "schemas": [
+        {
+            "id": "schema_TYPE__aou",
+            "select": {
+                "$ref": "#/$defs/select_aou"
+            },
+            "validate": {
+                "local": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/TYPE__aou"
+                        }
+                    ],
+                    "unevaluatedProperties": false
+                },
+                "network": {
+                    "satisfies": {
+                        "contains": {
+                            "local": {
+                                "$ref": "#/$defs/select_GROUP__sw_arch"
+                            }
+                        },
+                        "minContains": 2,
+                        "maxContains": 3
+                    }
+                }
+
+            }
+        },
+        {
+            "id": "schema_TYPE__assumed_req",
+            "select": {
+                "$ref": "#/$defs/select_asreq"
+            },
+            "validate": {
+                "local": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/TYPE__assumed_req"
+                        },
+                        {
+                            "$ref": "#/$defs/GROUP__requirements"
+                        }
+                    ],
+                    "unevaluatedProperties": false
+                }
+            }
+        },
+        {
+            "id": "schema_TYPE__datatype",
+            "select": {
+                "$ref": "#/$defs/select_datatype"
+            },
+            "validate": {
+                "local": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/TYPE__datatype"
+                        },
+                        {
+                            "$ref": "#/$defs/GROUP__sw_arch2"
+                        }
+                    ],
+                    "unevaluatedProperties": false
+                }
+            }
+        },
+        {
+            "id": "schema_TYPE__port",
+            "select": {
+                "$ref": "#/$defs/select_port"
+            },
+            "validate": {
+                "local": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/TYPE__port"
+                        },
+                        {
+                            "$ref": "#/$defs/GROUP__sw_arch2"
+                        }
+                    ],
+                    "unevaluatedProperties": false
+                }
+            }
+        },
+        {
+            "id": "schema_TYPE__sw_arch_decision",
+            "select": {
+                "$ref": "#/$defs/select_sw_arch_dec"
+            },
+            "validate": {
+                "local": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/TYPE__sw_arch_decision"
+                        },
+                        {
+                            "$ref": "#/$defs/GROUP__sw_arch"
+                        }
+                    ],
+                    "unevaluatedProperties": false
+                }
+            }
+        },
+        {
+            "id": "schema_TYPE__sw_arch_diagram",
+            "select": {
+                "$ref": "#/$defs/select_sw_arch_dia"
+            },
+            "validate": {
+                "local": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/TYPE__sw_arch_diagram"
+                        },
+                        {
+                            "$ref": "#/$defs/GROUP__sw_arch"
+                        }
+                    ],
+                    "unevaluatedProperties": false
+                }
+            }
+        },
+        {
+            "id": "schema_TYPE__sw_requirement",
+            "select": {
+                "$ref": "#/$defs/select_swreq"
+            },
+            "validate": {
+                "local": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/TYPE__sw_requirement"
+                        },
+                        {
+                            "$ref": "#/$defs/GROUP__requirements"
+                        }
+                    ],
+                    "unevaluatedProperties": false
+                }
+            }
+        },
+        {
+            "id": "schema_TYPE__sys_requirement",
+            "select": {
+                "$ref": "#/$defs/select_sysreq"
+            },
+            "validate": {
+                "local": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/TYPE__sys_requirement"
+                        },
+                        {
+                            "$ref": "#/$defs/GROUP__requirements"
+                        }
+                    ],
+                    "unevaluatedProperties": false
+                }
+            }
+        },
+        {
+            "id": "schema_TYPE__test_specification",
+            "select": {
+                "$ref": "#/$defs/select_test_specification"
+            },
+            "validate": {
+                "local": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/TYPE__test_specification"
+                        }
+                    ],
+                    "unevaluatedProperties": false
+                },
+                "network": {
+                    "verifies": {
+                        "contains": {
+                            "local": {
+                                "$ref": "#/$defs/select_asreq"
+                            }
+                        },
+                        "minContains": 0
+                    }
+                }
+            }
+        },
+        {
+            "id": "schema_TYPE__unit",
+            "select": {
+                "$ref": "#/$defs/select_unit"
+            },
+            "validate": {
+                "local": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/TYPE__unit"
+                        },
+                        {
+                            "$ref": "#/$defs/GROUP__sw_arch2"
+                        }
+                    ],
+                    "unevaluatedProperties": false
+                }
+            }
+        }
+    ]
 }

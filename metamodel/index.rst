@@ -118,7 +118,7 @@ Testing
    :prefix: TESTSPEC__
    :color: #00FF00
    :style: node
-   :mandatory: OPTION__safety, LINK__verifies
+   :mandatory: OPTION__safety
 
    A test specification describes a need that defines tests for requirements.
 
@@ -149,7 +149,7 @@ Software Architecture II
 
 .. sn_type:: Port
    :id: TYPE__port
-   :directive: unit
+   :directive: port
    :prefix: PORT__
    :color: #FFA500
    :style: node
