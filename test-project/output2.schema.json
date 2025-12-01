@@ -293,14 +293,45 @@
                     "satisfies": {
                         "contains": {
                             "local": {
-                                "$ref": "#/$defs/select_GROUP__sw_arch"
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "enum": [
+                                            "asreq"
+                                        ]
+                                    }
+                                }
                             }
                         },
-                        "minContains": 2,
-                        "maxContains": 3
+                        "minContains": 2
                     }
                 }
-
+            }
+        },
+        {
+            "id": "[schema_TYPE__aou]_with_additional_[satisfies]",
+            "select": {
+                "$ref": "#/$defs/select_aou"
+            },
+            "validate": {
+                "network": {
+                    "satisfies": {
+                        "contains": {
+                            "local": {
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "enum": [
+                                            "sw_arch_dia",
+                                            "sw_arch_dec"
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "minContains": 2
+                    }
+                }
             }
         },
         {
@@ -454,7 +485,16 @@
                     "verifies": {
                         "contains": {
                             "local": {
-                                "$ref": "#/$defs/select_asreq"
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "enum": [
+                                            "sysreq",
+                                            "swreq",
+                                            "asreq"
+                                        ]
+                                    }
+                                }
                             }
                         },
                         "minContains": 0

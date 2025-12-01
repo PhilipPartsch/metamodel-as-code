@@ -316,7 +316,7 @@ def needs2schemas_types(needs: Dict[str, Any]) -> List[Dict[str, Any]]:
     for current_type in sn_types:
         selector = get_selector(current_type)
 
-        # for the local validation, we do nee the current type and all its groups
+        # for the local validation, we do need the current type and all its groups
         allOf_list = [
             {
                 "$ref": f"#/$defs/{current_type['id']}"
@@ -327,6 +327,7 @@ def needs2schemas_types(needs: Dict[str, Any]) -> List[Dict[str, Any]]:
             allOf_list.append(new_ref)
 
         validate_network = {}
+        additional_added_links = []
         # for the network validation, we need to evaluate the associations
         for child in current_type.get("parent_needs_back", []):
             if child not in needs:
@@ -344,22 +345,41 @@ def needs2schemas_types(needs: Dict[str, Any]) -> List[Dict[str, Any]]:
             if len(targets) == 0 or targets[0] not in needs:
                 continue
 
-            target_need = needs[targets[0]]
+            list_targets = []
+            for t in targets:
+                if t not in needs:
+                    continue
+                target_need = needs[t]
+                if "type" in target_need and target_need["type"] == "sn_type":
+                    list_targets.append(target_need["directive"])
+                elif "type" in target_need and target_need["type"] == "sn_typegroup":
+                    for group_type in target_need.get("groups_back", []):
+                        if group_type not in needs:
+                            continue
+                        group_type_need = needs[group_type]
+                        list_targets.append(group_type_need["directive"])
 
-            local_ref = { "$ref": f"#/$defs/{get_selector(target_need)}" }
+            local_list_of_types = {
+                "properties": {
+                    "type": {
+                            "type": "string",
+                            "enum": list_targets
+                    }
+                }
+            }
 
 
             my_dict = {
                     "contains": {
-                        "local": local_ref
+                        "local": local_list_of_types
                     },
                     "minContains": 0
             }
 
-            validate_network[link_need["option"]] = my_dict
-
-            added_a_link = True
-
+            if link_need["option"] not in validate_network:
+                validate_network[link_need["option"]] = my_dict
+            else:
+                additional_added_links.append((link_need["option"], my_dict))
 
 
         schema_entry = {
@@ -378,6 +398,16 @@ def needs2schemas_types(needs: Dict[str, Any]) -> List[Dict[str, Any]]:
         if not schema_entry["validate"]["network"]: # no network validations
             del schema_entry["validate"]["network"]
         list_schemas.append(schema_entry)
+
+        if additional_added_links:
+            for add_link in additional_added_links:
+                new_schema_entry = schema_entry.copy()
+                new_schema_entry["id"] = f"[{schema_entry['id']}]_with_additional_[{add_link[0]}]"
+                # remove previous local validation to avoid duplication
+                new_schema_entry["validate"] = {}
+                new_schema_entry["validate"]["network"] = {}
+                new_schema_entry["validate"]["network"][add_link[0]] = add_link[1]
+                list_schemas.append(new_schema_entry)
 
     return list_schemas
 
