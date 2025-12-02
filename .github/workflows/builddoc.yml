@@ -33,15 +33,29 @@ jobs:
         cache: 'pip' # caching pip dependencies
     - name: print versions for debugging
       run: python --version ; pip --version ; whoami ; pwd
+    - name: Download PlantUML jar
+      uses: actions/download-artifact@v5
+      with:
+        name: plantuml-jar
+        path: ./_tools
+        repository: plantuml/plantuml
+    - name: Verify PlantUML jar
+      run: |
+        ls -l ./_tools/plantuml.jar
+
+    - name: direct download
+      if: false
+      run: |
+        wget -O ./_tools/plantuml.jar https://github.com/plantuml/plantuml/releases/download/v1.2025.10/plantuml-gplv2-1.2025.10.jar
     - name: Install graphviz & default-jdk
-      if: False
+      if: True
       run: |
         sudo apt-get update
         sudo apt-get upgrade --yes
         sudo apt-get install graphviz default-jdk
         sudo apt-get upgrade --yes
     - name: Install graphviz & default-jdk mini
-      if: True
+      if: False
       run: |
         sudo apt-get install graphviz default-jdk
     - name: Install dependencies
