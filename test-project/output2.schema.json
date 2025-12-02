@@ -303,7 +303,7 @@
                                 }
                             }
                         },
-                        "minContains": 2
+                        "minContains": 0
                     }
                 }
             }
@@ -329,7 +329,7 @@
                                 }
                             }
                         },
-                        "minContains": 2
+                        "minContains": 0
                     }
                 }
             }
