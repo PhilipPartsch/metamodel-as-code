@@ -5,7 +5,7 @@ Definition of a Metamodel
 Here we define a sphinx-needs metamodel.
 
 .. needflow::
-   :filter: type != "sn_typegroup" and type != "sn_option" and type != "sn_link"
+   :filter: type != "sn_option" and type != "sn_link"
 
 Requirements
 ************
