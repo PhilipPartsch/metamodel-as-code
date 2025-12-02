@@ -46,6 +46,7 @@ jobs:
     - name: Install graphviz & default-jdk mini
       if: True
       run: |
+        sudo apt-get update
         sudo apt-get install graphviz default-jdk
     - name: Install dependencies
       run: |
