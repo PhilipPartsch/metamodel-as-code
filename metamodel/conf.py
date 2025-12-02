@@ -55,6 +55,14 @@ html_static_path = ['_static']
 
 # --  sphinxcontrib.plantuml configuration
 local_plantuml_path = os.path.join(os.path.dirname(__file__), "..", "_tools", "plantuml.jar")
+if on_rtd:
+    plantuml = f"java -Djava.awt.headless=true -jar {local_plantuml_path}"
+else:
+    plantuml = f"java -jar {local_plantuml_path}"
+
+print('plantuml path: ' + str(plantuml))
+
+plantuml_output_format = 'svg'
 
 # --  sphinx-needs configuration
 

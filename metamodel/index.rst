@@ -10,6 +10,10 @@ Requirements
 .. sn_typegroup:: Requirements
    :id: GROUP__requirements
 
+   .. needflow::
+      :root_id: GROUP__requirements
+      :root_depth: 1
+
 
 .. sn_type:: sys requirement
    :id: TYPE__sys_requirement
