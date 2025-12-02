@@ -36,7 +36,7 @@ jobs:
     - name: direct download PlantUML jar
       run: |
         wget -O ./_tools/plantuml.jar https://github.com/plantuml/plantuml/releases/download/v1.2025.10/plantuml-1.2025.10.jar
-        mv plantuml-1.2025.10.jar plantuml.jar
+        mv ./_tools/plantuml-1.2025.10.jar ./_tools/plantuml.jar
     - name: Install graphviz & default-jdk
       if: True
       run: |
