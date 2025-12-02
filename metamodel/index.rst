@@ -146,6 +146,17 @@ Software Architecture II
    :mandatory: OPTION__safety
    :groups: GROUP__sw_arch2
 
+   .. list2need::
+      :types: sn_association
+
+      *  (TYPE__unit__provided) provided.
+         The unit provided port.
+         ((targets="TYPE__port", link="LINK__provided"))
+
+      *  (TYPE__unit__required) required.
+         The unit required port.
+         ((targets="TYPE__port", link="LINK__required"))
+
 
 .. sn_type:: Port
    :id: TYPE__port
@@ -156,6 +167,13 @@ Software Architecture II
    :mandatory: OPTION__safety
    :groups: GROUP__sw_arch2
 
+.. sn_type:: Parameter
+   :id: TYPE__parameter
+   :directive: parameter
+   :prefix: PORT__
+   :color: #FFA500
+   :style: node
+   :groups: GROUP__sw_arch2
 
 .. sn_type:: Datatype
    :id: TYPE__datatype
@@ -163,7 +181,6 @@ Software Architecture II
    :prefix: DATATYPE__
    :color: #FFA500
    :style: node
-   :mandatory: OPTION__safety
    :groups: GROUP__sw_arch2
 
 
@@ -233,7 +250,46 @@ Links
 
    A "covered_by" link indicates that a element is covered by another element.
 
+.. sn_link:: provided
+   :id: LINK__provided
+   :option: provided
+   :incoming: provided by
+   :outgoing: provided
+   :copy: true
+   :allow_dead_links: false
+   :style: #000000
+   :style_part: #000000
+   :style_start: -
+   :style_end: ->
 
-provided
-required
-datatype
+   A "provided" link indicates that a element is provided another element.
+
+.. sn_link:: required
+   :id: LINK__required
+   :option: required
+   :incoming: required by
+   :outgoing: required
+   :copy: true
+   :allow_dead_links: false
+   :style: #000000
+   :style_part: #000000
+   :style_start: -
+   :style_end: ->
+
+   A "required" link indicates that a element is required another element.
+
+.. sn_link:: datatype
+   :id: LINK__datatype
+   :option: datatype
+   :incoming: datatype of
+   :outgoing: datatype
+   :copy: true
+   :allow_dead_links: false
+   :style: #000000
+   :style_part: #000000
+   :style_start: -
+   :style_end: ->
+
+   A "optinal" link indicates that a element is optinal of another element.
+
+
