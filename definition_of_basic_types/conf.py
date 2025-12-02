@@ -35,7 +35,7 @@ on_rtd = os.environ.get("READTHEDOCS") == "True"
 
 extensions = [
     'sphinx_needs',
-    #'sphinxcontrib.plantuml',
+    'sphinxcontrib.plantuml',
 ]
 
 exclude_patterns = ['_tools/*',]
@@ -54,7 +54,7 @@ html_css_files = ['custom.css']
 html_static_path = ['_static']
 
 # --  sphinxcontrib.plantuml configuration
-#local_plantuml_path = os.path.join(os.path.dirname(__file__), "_tools", "plantuml.jar")
+local_plantuml_path = os.path.join(os.path.dirname(__file__), "..", "_tools", "plantuml.jar")
 
 # --  sphinx-needs configuration
 
