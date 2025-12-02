@@ -4,6 +4,8 @@ Definition of a Metamodel
 
 Here we define a sphinx-needs metamodel.
 
+.. needflow::
+
 Requirements
 ************
 
@@ -13,6 +15,12 @@ Requirements
    .. needflow::
       :root_id: GROUP__requirements
       :root_depth: 1
+
+   .. needarch::
+
+      {{flow(need().id)}}{
+      {{import("groups_back")}}
+      }
 
 
 .. sn_type:: sys requirement

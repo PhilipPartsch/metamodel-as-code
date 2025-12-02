@@ -32,13 +32,13 @@ def types2python(types: List[Any]) -> List[str]:
         t_str = f'    '
         if len(t) >= 1 and t[0] == '#':
             t_str += f'# '
-        t_str += f'dict(directive="{t.lower()}", title="{t}", prefix="{t}__", color="#BFD8D2", style="node"),\n'
+        t_str += f'dict(directive="{t.lower()}", title="{t}", prefix="{t}__", color="#FFFFFF", style="card"),\n'
         dicts_data.append(t_str)
 
     return_string = "needs_types = [\n" + "".join(dicts_data) + "]\n"
 
     #needs_types = [
-    #    dict(directive="req", title="Requirement", prefix="R_", color="#BFD8D2", style="node"),
+    #    dict(directive="req", title="Requirement", prefix="R_", color="#FFFFFF", style="card"),
     #]
 
     return return_string
