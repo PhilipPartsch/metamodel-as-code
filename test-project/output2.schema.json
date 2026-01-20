@@ -10,6 +10,13 @@
                 "ASIL-D"
             ]
         },
+        "OPTION__security": {
+            "type": "string",
+            "enum": [
+                "No",
+                "Yes"
+            ]
+        },
         "select_aou": {
             "properties": {
                 "type": {
@@ -21,6 +28,9 @@
             "properties": {
                 "safety": {
                     "$ref": "#/$defs/OPTION__safety"
+                },
+                "security": {
+                    "$ref": "#/$defs/OPTION__security"
                 },
                 "satisfies": {
                     "type": "array",
@@ -36,7 +46,8 @@
                 }
             },
             "required": [
-                "safety"
+                "safety",
+                "security"
             ]
         },
         "select_asreq": {
@@ -47,14 +58,8 @@
             }
         },
         "TYPE__assumed_req": {
-            "properties": {
-                "safety": {
-                    "$ref": "#/$defs/OPTION__safety"
-                }
-            },
-            "required": [
-                "safety"
-            ]
+            "properties": {},
+            "required": []
         },
         "select_datatype": {
             "properties": {
@@ -64,14 +69,19 @@
             }
         },
         "TYPE__datatype": {
+            "properties": {},
+            "required": []
+        },
+        "select_parameter": {
             "properties": {
-                "safety": {
-                    "$ref": "#/$defs/OPTION__safety"
+                "type": {
+                    "const": "parameter"
                 }
-            },
-            "required": [
-                "safety"
-            ]
+            }
+        },
+        "TYPE__parameter": {
+            "properties": {},
+            "required": []
         },
         "select_port": {
             "properties": {
@@ -81,14 +91,8 @@
             }
         },
         "TYPE__port": {
-            "properties": {
-                "safety": {
-                    "$ref": "#/$defs/OPTION__safety"
-                }
-            },
-            "required": [
-                "safety"
-            ]
+            "properties": {},
+            "required": []
         },
         "select_sw_arch_dec": {
             "properties": {
@@ -98,14 +102,8 @@
             }
         },
         "TYPE__sw_arch_decision": {
-            "properties": {
-                "safety": {
-                    "$ref": "#/$defs/OPTION__safety"
-                }
-            },
-            "required": [
-                "safety"
-            ]
+            "properties": {},
+            "required": []
         },
         "select_sw_arch_dia": {
             "properties": {
@@ -115,14 +113,8 @@
             }
         },
         "TYPE__sw_arch_diagram": {
-            "properties": {
-                "safety": {
-                    "$ref": "#/$defs/OPTION__safety"
-                }
-            },
-            "required": [
-                "safety"
-            ]
+            "properties": {},
+            "required": []
         },
         "select_swreq": {
             "properties": {
@@ -132,14 +124,8 @@
             }
         },
         "TYPE__sw_requirement": {
-            "properties": {
-                "safety": {
-                    "$ref": "#/$defs/OPTION__safety"
-                }
-            },
-            "required": [
-                "safety"
-            ]
+            "properties": {},
+            "required": []
         },
         "select_sysreq": {
             "properties": {
@@ -149,14 +135,8 @@
             }
         },
         "TYPE__sys_requirement": {
-            "properties": {
-                "safety": {
-                    "$ref": "#/$defs/OPTION__safety"
-                }
-            },
-            "required": [
-                "safety"
-            ]
+            "properties": {},
+            "required": []
         },
         "select_test_specification": {
             "properties": {
@@ -169,6 +149,9 @@
             "properties": {
                 "safety": {
                     "$ref": "#/$defs/OPTION__safety"
+                },
+                "security": {
+                    "$ref": "#/$defs/OPTION__security"
                 },
                 "verifies": {
                     "type": "array",
@@ -184,7 +167,8 @@
                 }
             },
             "required": [
-                "safety"
+                "safety",
+                "security"
             ]
         },
         "select_unit": {
@@ -196,13 +180,26 @@
         },
         "TYPE__unit": {
             "properties": {
-                "safety": {
-                    "$ref": "#/$defs/OPTION__safety"
+                "provided": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "required": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "links": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
                 }
             },
-            "required": [
-                "safety"
-            ]
+            "required": []
         },
         "select_GROUP__requirements": {
             "anyOf": [
@@ -218,8 +215,18 @@
             ]
         },
         "GROUP__requirements": {
-            "properties": {},
-            "required": []
+            "properties": {
+                "safety": {
+                    "$ref": "#/$defs/OPTION__safety"
+                },
+                "security": {
+                    "$ref": "#/$defs/OPTION__security"
+                }
+            },
+            "required": [
+                "safety",
+                "security"
+            ]
         },
         "select_GROUP__sw_arch": {
             "anyOf": [
@@ -233,6 +240,12 @@
         },
         "GROUP__sw_arch": {
             "properties": {
+                "safety": {
+                    "$ref": "#/$defs/OPTION__safety"
+                },
+                "security": {
+                    "$ref": "#/$defs/OPTION__security"
+                },
                 "satisfies": {
                     "type": "array",
                     "items": {
@@ -253,7 +266,8 @@
                 }
             },
             "required": [
-                "satisfies"
+                "safety",
+                "security"
             ]
         },
         "select_GROUP__sw_arch2": {
@@ -265,13 +279,26 @@
                     "$ref": "#/$defs/select_port"
                 },
                 {
+                    "$ref": "#/$defs/select_parameter"
+                },
+                {
                     "$ref": "#/$defs/select_datatype"
                 }
             ]
         },
         "GROUP__sw_arch2": {
-            "properties": {},
-            "required": []
+            "properties": {
+                "safety": {
+                    "$ref": "#/$defs/OPTION__safety"
+                },
+                "security": {
+                    "$ref": "#/$defs/OPTION__security"
+                }
+            },
+            "required": [
+                "safety",
+                "security"
+            ]
         }
     },
     "schemas": [
@@ -363,6 +390,25 @@
                     "allOf": [
                         {
                             "$ref": "#/$defs/TYPE__datatype"
+                        },
+                        {
+                            "$ref": "#/$defs/GROUP__sw_arch2"
+                        }
+                    ],
+                    "unevaluatedProperties": false
+                }
+            }
+        },
+        {
+            "id": "schema_TYPE__parameter",
+            "select": {
+                "$ref": "#/$defs/select_parameter"
+            },
+            "validate": {
+                "local": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/TYPE__parameter"
                         },
                         {
                             "$ref": "#/$defs/GROUP__sw_arch2"
@@ -518,6 +564,38 @@
                         }
                     ],
                     "unevaluatedProperties": false
+                },
+                "network": {
+                    "provided": {
+                        "contains": {
+                            "local": {
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "enum": [
+                                            "port"
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "minContains": 0
+                    },
+                    "required": {
+                        "contains": {
+                            "local": {
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "enum": [
+                                            "port"
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "minContains": 0
+                    }
                 }
             }
         }

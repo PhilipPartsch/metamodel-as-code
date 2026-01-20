@@ -1,0 +1,170 @@
+[needs]
+schema_definitions_from_json = "output2.schema.json"
+
+[[needs.types]]
+directive = "aou"
+title = "Assumption of Use"
+prefix = "AOU__"
+color = "#FF0000"
+style = "node"
+
+[[needs.types]]
+directive = "asreq"
+title = "assumed requirement"
+prefix = "ASREQ__"
+color = "#FFA500"
+style = "node"
+
+[[needs.types]]
+directive = "datatype"
+title = "Datatype"
+prefix = "DATATYPE__"
+color = "#FFA500"
+style = "node"
+
+[[needs.types]]
+directive = "parameter"
+title = "Parameter"
+prefix = "PORT__"
+color = "#FFA500"
+style = "node"
+
+[[needs.types]]
+directive = "port"
+title = "Port"
+prefix = "PORT__"
+color = "#FFA500"
+style = "node"
+
+[[needs.types]]
+directive = "sw_arch_dec"
+title = "Software Architecture Decision"
+prefix = "ARCH_DEC__"
+color = "#FFA500"
+style = "node"
+
+[[needs.types]]
+directive = "sw_arch_dia"
+title = "Software Architecture Diagram"
+prefix = "ARCH_DIA__"
+color = "#FFA500"
+style = "node"
+
+[[needs.types]]
+directive = "swreq"
+title = "sw requirement"
+prefix = "SWREQ__"
+color = "#FFA500"
+style = "node"
+
+[[needs.types]]
+directive = "sysreq"
+title = "sys requirement"
+prefix = "SYSREQ__"
+color = "#FFA500"
+style = "node"
+
+[[needs.types]]
+directive = "test_specification"
+title = "test_specification"
+prefix = "TESTSPEC__"
+color = "#00FF00"
+style = "node"
+
+[[needs.types]]
+directive = "unit"
+title = "Unit"
+prefix = "UNIT__"
+color = "#FFA500"
+style = "node"
+
+
+[[needs.extra_options]]
+name = "safety"
+description = "safety level"
+schema = {type = "string", enum = [ "QM", "ASIL-A", "ASIL-B", "ASIL-C", "ASIL-D" ]}
+
+[[needs.extra_options]]
+name = "security"
+description = "security level"
+schema = {type = "string", enum = [ "No", "Yes" ]}
+
+
+[[needs.extra_links]]
+option = "covered_by"
+incoming = "covers"
+outgoing = "covered by"
+copy = true
+style = "#000000"
+style_part = "#000000"
+style_start = "-"
+style_end = "->"
+allow_dead_links = false
+
+[[needs.extra_links]]
+option = "covers"
+incoming = "covered by"
+outgoing = "covers"
+copy = true
+style = "#000000"
+style_part = "#000000"
+style_start = "-"
+style_end = "->"
+allow_dead_links = false
+
+[[needs.extra_links]]
+option = "datatype"
+incoming = "datatype of"
+outgoing = "datatype"
+copy = true
+style = "#000000"
+style_part = "#000000"
+style_start = "-"
+style_end = "->"
+allow_dead_links = false
+
+[[needs.extra_links]]
+option = "provided"
+incoming = "provided by"
+outgoing = "provided"
+copy = true
+style = "#000000"
+style_part = "#000000"
+style_start = "-"
+style_end = "->"
+allow_dead_links = false
+
+[[needs.extra_links]]
+option = "required"
+incoming = "required by"
+outgoing = "required"
+copy = true
+style = "#000000"
+style_part = "#000000"
+style_start = "-"
+style_end = "->"
+allow_dead_links = false
+
+[[needs.extra_links]]
+option = "satisfies"
+incoming = "satisfied by"
+outgoing = "satisfies"
+copy = true
+style = "#000000"
+style_part = "#000000"
+style_start = "-"
+style_end = "->"
+allow_dead_links = false
+
+[[needs.extra_links]]
+option = "verifies"
+incoming = "verified by"
+outgoing = "verifies"
+copy = true
+style = "#000000"
+style_part = "#000000"
+style_start = "-"
+style_end = "->"
+allow_dead_links = false
+
+

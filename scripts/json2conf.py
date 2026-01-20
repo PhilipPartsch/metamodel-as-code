@@ -7,6 +7,7 @@ metamodel and convert it into a sphinx-needs configuration format.
 """
 
 import json
+import tomli_w
 from pathlib import Path
 import argparse
 from typing import Any, Dict, List
@@ -16,9 +17,6 @@ from sphinx_needs.config import NeedType, NeedExtraOption, LinkOptionsType
 from get_class_variables import typed_dict_fields
 
 from dict2py import dict_to_dictcall, pyvalue_to_code
-
-intendation : str = f"    "
-
 
 def extract_needs_from_json(data: Dict[str, Any]) -> Dict[str, Any]:
     """
@@ -30,21 +28,24 @@ def extract_needs_from_json(data: Dict[str, Any]) -> Dict[str, Any]:
     needs = current_version_data.get("needs", {})
     return needs
 
+intendation : str = f"    "
 
-def types2python(types: List[Dict[str, Any]]) -> List[str]:
+######################## conf.py generation ########################
+
+def types2python(types: List[Dict[str, Any]]) -> str:
     """
     Convert a list of types to a Python-compatible string representation.
     """
 
-    inlude_keys: str = list(typed_dict_fields(NeedType).keys())
-    #print("NeedType: " + str(inlude_keys))
+    include_keys = list(typed_dict_fields(NeedType).keys())
+    #print("NeedType: " + str(include_keys))
 
     dicts_data = []
     for t in types:
         t_str = intendation
         if "id" in t and len(t["id"]) >= 1 and t["id"][0] == '#':
             t_str += f'# '
-        t_str += dict_to_dictcall(t, include=inlude_keys) + ",\n"
+        t_str += dict_to_dictcall(t, include=include_keys) + ",\n"
         dicts_data.append(t_str)
 
     return_string = "needs_types = [\n" + "".join(dicts_data) + "]\n"
@@ -63,8 +64,8 @@ def attributes2python(attributes: List[Dict[str, Any]]) -> str:
     Convert a list of attributes to a Python-compatible string representation.
     """
 
-    inlude_keys: str = list(typed_dict_fields(NeedExtraOption).keys())
-    #print("NeedExtraOption: " + str(inlude_keys))
+    include_keys = list(typed_dict_fields(NeedExtraOption).keys())
+    #print("NeedExtraOption: " + str(include_keys))
 
     dicts_data = []
 
@@ -72,7 +73,7 @@ def attributes2python(attributes: List[Dict[str, Any]]) -> str:
         a_str = intendation
         if "id" in a and len(a["id"]) >= 1 and a["id"][0] == '#':
             a_str += f'# '
-        a_str += dict_to_dictcall(a, include=inlude_keys) + ",\n"
+        a_str += dict_to_dictcall(a, include=include_keys) + ",\n"
         dicts_data.append(a_str)
 
     needs_extra_options = [
@@ -91,8 +92,9 @@ def links2python(links: List[Dict[str, Any]]) -> str:
     Convert a list of links to a Python-compatible string representation.
     """
 
-    inlude_keys: str = list(typed_dict_fields(LinkOptionsType).keys())
-    print("LinkOptionsType: " + str(inlude_keys))
+    include_keys = list(typed_dict_fields(LinkOptionsType).keys())
+    include_keys.remove("color")
+    #print("LinkOptionsType: " + str(include_keys))
 
     dicts_data = []
 
@@ -100,7 +102,7 @@ def links2python(links: List[Dict[str, Any]]) -> str:
         l_str = intendation
         if "id" in l and len(l["id"]) >= 1 and l["id"][0] == '#':
             l_str += f'# '
-        l_str += dict_to_dictcall(l, include=inlude_keys) + ",\n"
+        l_str += dict_to_dictcall(l, include=include_keys) + ",\n"
         dicts_data.append(l_str)
 
     needs_extra_links = [
@@ -111,13 +113,13 @@ def links2python(links: List[Dict[str, Any]]) -> str:
     return_string += "".join(dicts_data)
     return_string += "]\n"
 
-    print("Generated needs_extra_links:\n" + return_string)
+    #print("Generated needs_extra_links:\n" + return_string)
 
     return return_string
 
 
 
-def json_to_conf(data: Dict[str, Any]) -> str:
+def json_to_conf_py(data: Dict[str, Any]) -> str:
     """
     Convert a dictionary to a custom configuration format.
     """
@@ -128,27 +130,33 @@ def json_to_conf(data: Dict[str, Any]) -> str:
     sn_attributes = []
     sn_links = []
 
-    for need in needs.values():
-        print(need["id"] + ": " + need["type"])
+    #print("---- Print all needs ----")
 
-    print("---- Filtering needs by type ----")
+    for need in needs.values():
+        #print(need["id"] + ": " + need["type"])
+        pass
+
+    #print("---- Filtering needs by type ----")
 
     # filter list of needs dict by type == "sn_type"
     sn_types = list(filter(lambda need: need.get("type") == "sn_type", needs.values()))
     for value in sn_types:
-        print(value["id"] + " : " + value["type"])
+        #print(value["id"] + " : " + value["type"])
+        pass
 
-    print("---- Filtering needs by option ----")
+    #print("---- Filtering needs by option ----")
 
     sn_attributes = list(filter(lambda need: need.get("type") == "sn_option", needs.values()))
     for value in sn_attributes:
-        print(value["id"] + " : " + value["type"])
+        #print(value["id"] + " : " + value["type"])
+        pass
 
-    print("---- Filtering needs by link ----")
+    #print("---- Filtering needs by link ----")
 
     sn_links = list(filter(lambda need: need.get("type") == "sn_link", needs.values()))
     for value in sn_links:
-        print(value["id"] + " : " + value["type"])
+        #print(value["id"] + " : " + value["type"])
+        pass
 
     conf_lines = types2python(sn_types)
     conf_lines += "\n"
@@ -160,6 +168,211 @@ def json_to_conf(data: Dict[str, Any]) -> str:
     conf_lines += "\n"
 
     return conf_lines
+
+def add_schema_file_reference_python(schema_file: str) -> str:
+    """
+    Generate a python reference to an external schema file.
+    """
+
+    return_string: str = ""
+
+    return_string += f'needs_schema_definitions_from_json = "{schema_file}"\n'
+    return_string += "\n"
+
+    return return_string
+
+######################## conf.toml generation ########################
+
+def dict_to_toml(d: dict, include: List[str]=[], all: bool=False)-> List[str]:
+    """
+    Konvertiert ein dict in einen toml-String.
+    include = Menge/Liste von Keys, die gerneriert werden sollen.
+    """
+    include = (include or [])
+    parts = []
+
+    if all:
+        include = list(d.keys())
+
+    for k in include:
+        if k not in d:
+            continue
+        key_code = k
+        value = d[k]
+        if isinstance(value, str):
+            if k == "schema":
+                if len(value) == 0:
+                    continue
+
+                # We treat the schema as a JSON string
+                schema_dict = json.loads(d[k])
+                toml = tomli_w.dumps(schema_dict, indent=0)
+                toml = toml.strip().replace('\n', ', ')
+                toml = toml.replace(',,', ',').replace(', }', ' }').replace('{, ', '{ ').replace('[, ', '[ ').replace(', ]', ' ]')
+                toml = "{" + toml + "}"
+                value_code = toml
+            else:
+                value_code = f'"{value}"'  # einfache String-Escapes
+        elif isinstance(value, bool):
+            value_code = "true" if value else "false"
+        elif value is None:
+            continue
+        else:
+            value_code = str(value)
+        parts.append(f"{key_code} = {value_code}\n")
+
+    return parts
+
+def types2toml(types: List[Dict[str, Any]]) -> str:
+    """
+    Convert a list of types to a toml string representation.
+    """
+
+    include_keys = list(typed_dict_fields(NeedType).keys())
+
+    disable_by_commenting : bool = False
+
+    return_string: str = ""
+
+    for t in types:
+        type_lines = []
+        type_lines.append("[[needs.types]]\n")
+
+        type_lines += dict_to_toml(t, include=include_keys)
+
+        disable_by_commenting = "id" in t and len(t["id"]) >= 1 and t["id"][0] == '#'
+
+        for line in type_lines:
+            return_string += '# ' + line if disable_by_commenting else line
+        return_string += "\n"
+
+    #print("Generated needs_types:\n" + return_string)
+
+    return return_string
+
+
+def attributes2toml(attributes: List[Dict[str, Any]]) -> str:
+    """
+    Convert a list of attributes to a toml string representation.
+    """
+
+    include_keys = list(typed_dict_fields(NeedExtraOption).keys())
+    #print("NeedExtraOption: " + str(include_keys))
+
+    disable_by_commenting : bool = False
+
+    return_string: str = ""
+
+    for a in attributes:
+        attribute_lines = []
+        attribute_lines.append("[[needs.extra_options]]\n")
+
+        attribute_lines += dict_to_toml(a, include=include_keys)
+
+        disable_by_commenting = "id" in a and len(a["id"]) >= 1 and a["id"][0] == '#'
+
+        for line in attribute_lines:
+            return_string += '# ' + line if disable_by_commenting else line
+        return_string += "\n"
+
+    #print("Generated needs_extra_options:\n" + return_string)
+
+    return return_string
+
+def links2toml(links: List[Dict[str, Any]]) -> str:
+    """
+    Convert a list of links to a toml string representation.
+    """
+
+    include_keys = list(typed_dict_fields(LinkOptionsType).keys())
+    include_keys.remove("color")
+    #print("LinkOptionsType: " + str(include_keys))
+
+    disable_by_commenting : bool = False
+
+    return_string: str = ""
+
+    for l in links:
+        link_lines = []
+        link_lines.append("[[needs.extra_links]]\n")
+
+        link_lines += dict_to_toml(l, include=include_keys)
+
+        disable_by_commenting = "id" in l and len(l["id"]) >= 1 and l["id"][0] == '#'
+
+        for line in link_lines:
+            return_string += '# ' + line if disable_by_commenting else line
+        return_string += "\n"
+
+    #print("Generated needs_extra_links:\n" + return_string)
+    return return_string
+
+def json_to_conf_toml(data: Dict[str, Any]) -> str:
+    """
+    Convert a dictionary to a custom configuration format.
+    """
+
+    needs = extract_needs_from_json(data)
+
+    types = needs.keys()
+    sn_attributes = []
+    sn_links = []
+
+    #print("---- Print all needs ----")
+
+    for need in needs.values():
+        #print(need["id"] + ": " + need["type"])
+        pass
+
+    #print("---- Filtering needs by type ----")
+
+    # filter list of needs dict by type == "sn_type"
+    sn_types = list(filter(lambda need: need.get("type") == "sn_type", needs.values()))
+    for value in sn_types:
+        #print(value["id"] + " : " + value["type"])
+        pass
+
+    #print("---- Filtering needs by option ----")
+
+    sn_attributes = list(filter(lambda need: need.get("type") == "sn_option", needs.values()))
+    for value in sn_attributes:
+        #print(value["id"] + " : " + value["type"])
+        pass
+
+    #print("---- Filtering needs by link ----")
+
+    sn_links = list(filter(lambda need: need.get("type") == "sn_link", needs.values()))
+    for value in sn_links:
+        #print(value["id"] + " : " + value["type"])
+        pass
+
+    conf_lines = ""
+
+    conf_lines += types2toml(sn_types)
+    conf_lines += "\n"
+
+    conf_lines += attributes2toml(sn_attributes)
+    conf_lines += "\n"
+
+    conf_lines += links2toml(sn_links)
+    conf_lines += "\n"
+
+    return conf_lines
+
+def add_schema_file_reference_toml(schema_file: str) -> str:
+    """
+    Generate a TOML reference to an external schema file.
+    """
+
+    return_string: str = ""
+
+    return_string += "[needs]\n"
+    return_string += f'schema_definitions_from_json = "{schema_file}"\n'
+    return_string += "\n"
+
+    return return_string
+
+######################## schema generation ########################
 
 selector_prefix : str = 'select_'
 
@@ -441,13 +654,6 @@ def main(input_path: Path, output_path: Path) -> None:
     with open(input_path, 'r') as infile:
         data = json.load(infile)
 
-    # Convert JSON data to custom configuration format
-    conf_data = json_to_conf(data)
-
-    # Write the configuration data to output file
-    with open(output_path, 'w') as outfile:
-        outfile.write(conf_data)
-
     # Convert JSON data to schema
     schema = json2schema(data)
 
@@ -455,6 +661,25 @@ def main(input_path: Path, output_path: Path) -> None:
     schema_output_path = output_path.with_suffix('.schema.json')
     with open(schema_output_path, 'w') as schema_outfile:
         json.dump(schema, schema_outfile, indent=4)
+
+    # Convert JSON data to sphinx configuration format
+    conf_data = add_schema_file_reference_python(schema_file=schema_output_path.name)
+    conf_data += json_to_conf_py(data)
+
+    # Write the configuration data to output file
+    conf_py_output_path = output_path.with_suffix('.py')
+    with open(conf_py_output_path, 'w') as outfile:
+        outfile.write(conf_data)
+
+    # Convert JSON data to sphinx-needs configuration format
+    conf_toml = add_schema_file_reference_toml(schema_file=schema_output_path.name)
+    conf_toml += json_to_conf_toml(data)
+
+    # Write the configuration data to output file
+    conf_toml_output_path = output_path.with_suffix('.toml')
+    with open(conf_toml_output_path, 'w') as outfile:
+        outfile.write(conf_toml)
+
 
 if __name__ == "__main__":
       parser = argparse.ArgumentParser(description="Convert JSON to custom configuration format.")

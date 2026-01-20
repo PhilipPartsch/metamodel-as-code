@@ -12,6 +12,7 @@ Requirements
 
 .. sn_typegroup:: Requirements
    :id: GROUP__requirements
+   :mandatory: OPTION__safety, OPTION__security
 
    .. needflow::
       :root_id: GROUP__requirements
@@ -30,7 +31,6 @@ Requirements
    :prefix: SYSREQ__
    :color: #FFA500
    :style: node
-   :mandatory: OPTION__safety
    :groups: GROUP__requirements
 
 
@@ -40,7 +40,6 @@ Requirements
    :prefix: SWREQ__
    :color: #FFA500
    :style: node
-   :mandatory: OPTION__safety
    :groups: GROUP__requirements
 
 
@@ -50,7 +49,6 @@ Requirements
    :prefix: ASREQ__
    :color: #FFA500
    :style: node
-   :mandatory: OPTION__safety
    :groups: GROUP__requirements
 
 
@@ -59,6 +57,7 @@ Software Architecture
 
 .. sn_typegroup:: Software Architecture
    :id: GROUP__sw_arch
+   :mandatory: OPTION__safety, OPTION__security
 
    .. list2need::
       :types: sn_association
@@ -77,7 +76,6 @@ Software Architecture
    :prefix: ARCH_DIA__
    :color: #FFA500
    :style: node
-   :mandatory: OPTION__safety
    :groups: GROUP__sw_arch
 
 
@@ -87,7 +85,6 @@ Software Architecture
    :prefix: ARCH_DEC__
    :color: #FFA500
    :style: node
-   :mandatory: OPTION__safety
    :groups: GROUP__sw_arch
 
 Safety
@@ -99,7 +96,7 @@ Safety
    :prefix: AOU__
    :color: #FF0000
    :style: node
-   :mandatory: OPTION__safety
+   :mandatory: OPTION__safety, OPTION__security
 
    .. list2need::
       :types: sn_association
@@ -112,15 +109,6 @@ Safety
          ((targets="GROUP__sw_arch", link="LINK__satisfies"))
 
 
-.. sn_option:: safety
-   :id: OPTION__safety
-   :name: safety
-   :description: safety level
-   :schema: {"type": "string", "enum": ["QM", "ASIL-A", "ASIL-B", "ASIL-C", "ASIL-D"]}
-
-   The safety option indicates the safety level of a need.
-
-
 Testing
 *******
 
@@ -131,7 +119,7 @@ Testing
    :prefix: TESTSPEC__
    :color: #00FF00
    :style: node
-   :mandatory: OPTION__safety
+   :mandatory: OPTION__safety, OPTION__security
 
    A test specification describes a need that defines tests for requirements.
 
@@ -148,6 +136,7 @@ Software Architecture II
 
 .. sn_typegroup:: Software Architecture II
    :id: GROUP__sw_arch2
+   :mandatory: OPTION__safety, OPTION__security
 
 
 .. sn_type:: Unit
@@ -156,7 +145,6 @@ Software Architecture II
    :prefix: UNIT__
    :color: #FFA500
    :style: node
-   :mandatory: OPTION__safety
    :groups: GROUP__sw_arch2
 
    .. list2need::
@@ -177,7 +165,6 @@ Software Architecture II
    :prefix: PORT__
    :color: #FFA500
    :style: node
-   :mandatory: OPTION__safety
    :groups: GROUP__sw_arch2
 
 .. sn_type:: Parameter
@@ -200,8 +187,21 @@ Software Architecture II
 Options
 *******
 
+.. sn_option:: safety
+   :id: OPTION__safety
+   :name: safety
+   :description: safety level
+   :schema: {"type": "string", "enum": ["QM", "ASIL-A", "ASIL-B", "ASIL-C", "ASIL-D"]}
 
+   The safety option indicates the safety level of a need.
 
+.. sn_option:: security
+   :id: OPTION__security
+   :name: security
+   :description: security level
+   :schema: {"type": "string", "enum": ["No", "Yes"]}
+
+   The security option indicates the security level of a need.
 
 Links
 *****
@@ -304,5 +304,3 @@ Links
    :style_end: ->
 
    A "optinal" link indicates that a element is optinal of another element.
-
-

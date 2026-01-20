@@ -75,30 +75,30 @@ needs_build_json = True
 # added by scripts: json2conf.py
 
 needs_types = [
-    dict(directive="sn_association", title="SN_ASSOCIATION", prefix="SN_ASSOCIATION__", color="#FFFFFF", style="card"),
-    dict(directive="sn_link", title="SN_LINK", prefix="SN_LINK__", color="#FFFFFF", style="card"),
-    dict(directive="sn_option", title="SN_OPTION", prefix="SN_OPTION__", color="#FFFFFF", style="card"),
-    dict(directive="sn_type", title="SN_TYPE", prefix="SN_TYPE__", color="#FFFFFF", style="card"),
-    dict(directive="sn_typegroup", title="SN_TYPEGROUP", prefix="SN_TYPEGROUP__", color="#FFFFFF", style="card"),
+    dict(directive="sn_association", title="SN_ASSOCIATION", prefix="SN_ASSOCIATION__", color="#000000", style="card"),
+    dict(directive="sn_link", title="SN_LINK", prefix="SN_LINK__", color="#000000", style="card"),
+    dict(directive="sn_option", title="SN_OPTION", prefix="SN_OPTION__", color="#000000", style="card"),
+    dict(directive="sn_type", title="SN_TYPE", prefix="SN_TYPE__", color="#000000", style="card"),
+    dict(directive="sn_typegroup", title="SN_TYPEGROUP", prefix="SN_TYPEGROUP__", color="#000000", style="card"),
 ]
 
 needs_extra_options = [
-    {"name": "option",},
-    {"name": "incoming",},
-    {"name": "outgoing",},
-    {"name": "copy",},
-    {"name": "allow_dead_links",},
-    # {"name": "#style",},
-    {"name": "style_part",},
-    {"name": "style_start",},
-    {"name": "style_end",},
-    {"name": "name",},
-    {"name": "description",},
+    {"name": "option", "schema": {"type": "string",},},
+    {"name": "incoming", "schema": {"type": "string",},},
+    {"name": "outgoing", "schema": {"type": "string",},},
+    {"name": "copy", "schema": {"type": "boolean",},},
+    {"name": "allow_dead_links", "schema": {"type": "boolean",},},
+    # {"name": "#style", "schema": {"type": "string",},},
+    {"name": "style_part", "schema": {"type": "string",},},
+    {"name": "style_start", "schema": {"type": "string",},},
+    {"name": "style_end", "schema": {"type": "string",},},
+    {"name": "name", "schema": {"type": "string",},},
+    {"name": "description", "schema": {"type": "string",},},
     {"name": "schema",},
-    {"name": "directive",},
-    # {"name": "#title",},
-    {"name": "prefix",},
-    {"name": "color",},
+    {"name": "directive", "schema": {"type": "string",},},
+    # {"name": "#title", "schema": {"type": "string",},},
+    {"name": "prefix", "schema": {"type": "string",},},
+    {"name": "color", "schema": {"type": "string",},},
 ]
 
 needs_extra_links = [
