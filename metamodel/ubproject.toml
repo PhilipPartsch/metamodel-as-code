@@ -1,0 +1,124 @@
+[needs]
+id_required = true
+id_length = 3
+id_regex = "^[A-Za-z0-9_]{5,}"
+build_json = true
+
+[[needs.types]]
+directive = "sn_association"
+title = "SN_ASSOCIATION"
+prefix = "SN_ASSOCIATION__"
+color = "#FFFFFF"
+style = "card"
+
+[[needs.types]]
+directive = "sn_link"
+title = "SN_LINK"
+prefix = "SN_LINK__"
+color = "#FFFFFF"
+style = "card"
+
+[[needs.types]]
+directive = "sn_option"
+title = "SN_OPTION"
+prefix = "SN_OPTION__"
+color = "#FFFFFF"
+style = "card"
+
+[[needs.types]]
+directive = "sn_type"
+title = "SN_TYPE"
+prefix = "SN_TYPE__"
+color = "#FFFFFF"
+style = "card"
+
+[[needs.types]]
+directive = "sn_typegroup"
+title = "SN_TYPEGROUP"
+prefix = "SN_TYPEGROUP__"
+color = "#FFFFFF"
+style = "card"
+
+
+[[needs.extra_options]]
+name = "option"
+schema = {type = "string"}
+
+[[needs.extra_options]]
+name = "incoming"
+schema = {type = "string"}
+
+[[needs.extra_options]]
+name = "outgoing"
+schema = {type = "string"}
+
+[[needs.extra_options]]
+name = "copy"
+schema = {type = "boolean"}
+
+[[needs.extra_options]]
+name = "allow_dead_links"
+schema = {type = "boolean"}
+
+[[needs.extra_options]]
+name = "style_part"
+schema = {type = "string"}
+
+[[needs.extra_options]]
+name = "style_start"
+schema = {type = "string"}
+
+[[needs.extra_options]]
+name = "style_end"
+schema = {type = "string"}
+
+[[needs.extra_options]]
+name = "name"
+schema = {type = "string"}
+
+[[needs.extra_options]]
+name = "description"
+schema = {type = "string"}
+
+[[needs.extra_options]]
+name = "schema"
+
+[[needs.extra_options]]
+name = "directive"
+schema = {type = "string"}
+
+[[needs.extra_options]]
+name = "prefix"
+schema = {type = "string"}
+
+[[needs.extra_options]]
+name = "color"
+schema = {type = "string"}
+
+
+[[needs.extra_links]]
+option = "targets"
+incoming = "targets_back"
+outgoing = "targets"
+
+[[needs.extra_links]]
+option = "link"
+incoming = "link_back"
+outgoing = "link"
+schema = {maxItems = 1}
+
+[[needs.extra_links]]
+option = "optinal"
+incoming = "optinal_back"
+outgoing = "optinal"
+
+[[needs.extra_links]]
+option = "mandatory"
+incoming = "mandatory_back"
+outgoing = "mandatory"
+
+[[needs.extra_links]]
+option = "groups"
+incoming = "groups_back"
+outgoing = "groups"
+

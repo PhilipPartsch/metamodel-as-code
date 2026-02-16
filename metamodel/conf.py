@@ -66,47 +66,4 @@ plantuml_output_format = 'svg'
 
 # --  sphinx-needs configuration
 
-needs_id_required = True
-needs_id_length = 3
-needs_id_regex = "^[A-Za-z0-9_]{5,}"
-needs_build_json = True
-
-
-# added by scripts: json2conf.py
-
-needs_types = [
-    dict(directive="sn_association", title="SN_ASSOCIATION", prefix="SN_ASSOCIATION__", color="#000000", style="card"),
-    dict(directive="sn_link", title="SN_LINK", prefix="SN_LINK__", color="#000000", style="card"),
-    dict(directive="sn_option", title="SN_OPTION", prefix="SN_OPTION__", color="#000000", style="card"),
-    dict(directive="sn_type", title="SN_TYPE", prefix="SN_TYPE__", color="#000000", style="card"),
-    dict(directive="sn_typegroup", title="SN_TYPEGROUP", prefix="SN_TYPEGROUP__", color="#000000", style="card"),
-]
-
-needs_extra_options = [
-    {"name": "option", "schema": {"type": "string",},},
-    {"name": "incoming", "schema": {"type": "string",},},
-    {"name": "outgoing", "schema": {"type": "string",},},
-    {"name": "copy", "schema": {"type": "boolean",},},
-    {"name": "allow_dead_links", "schema": {"type": "boolean",},},
-    # {"name": "#style", "schema": {"type": "string",},},
-    {"name": "style_part", "schema": {"type": "string",},},
-    {"name": "style_start", "schema": {"type": "string",},},
-    {"name": "style_end", "schema": {"type": "string",},},
-    {"name": "name", "schema": {"type": "string",},},
-    {"name": "description", "schema": {"type": "string",},},
-    {"name": "schema",},
-    {"name": "directive", "schema": {"type": "string",},},
-    # {"name": "#title", "schema": {"type": "string",},},
-    {"name": "prefix", "schema": {"type": "string",},},
-    {"name": "color", "schema": {"type": "string",},},
-]
-
-needs_extra_links = [
-    dict(option = "targets", incoming = "targets_back", outgoing ="targets",),
-    dict(option = "link", incoming = "link_back", outgoing ="link", schema={"maxItems": 1,},),
-    dict(option = "optinal", incoming = "optinal_back", outgoing ="optinal",),
-    dict(option = "mandatory", incoming = "mandatory_back", outgoing ="mandatory",),
-    dict(option = "groups", incoming = "groups_back", outgoing ="groups",),
-]
-
-
+needs_from_toml = "ubproject.toml"

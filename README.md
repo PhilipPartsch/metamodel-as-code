@@ -21,3 +21,8 @@ python ./scripts/json2conf.py -i ./use_datamodel/needs.json -o ./use_datamodel/o
 
 sphinx-build -b html ./test-project ./public/test-project
 
+## manuel commands
+
+python3 -m venv ./venv
+source ./venv/bin/activate
+
