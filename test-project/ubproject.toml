@@ -1,5 +1,5 @@
 [needs]
-schema_definitions_from_json2 = "output2.schema.json"
+schema_definitions_from_json = "output2.schema.json"
 
 [[needs.types]]
 directive = "aou"
@@ -135,7 +135,7 @@ style_end = "->"
 allow_dead_links = false
 
 [[needs.extra_links]]
-option = "required"
+option = "required2"
 incoming = "required by"
 outgoing = "required"
 copy = true

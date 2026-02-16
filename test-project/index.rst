@@ -24,6 +24,6 @@ Here we define a sphinx-needs test-project for our metamodel.
 
 .. asreq:: Need
    :id: NEED__001
-   :safety: ASIL-Z
-   :security: Yess
+   :safety: ASIL-D
+   :security: Yes
 
